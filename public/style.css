@@ -28,11 +28,11 @@ ul, li {
 }
 
 #loginPage {
-  display: none;
+  display: flex;
 }
 
 #chatPage {
-  display: flex;
+  display: none;
 }
 
 .chatArea {
