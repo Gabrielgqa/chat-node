@@ -12,5 +12,5 @@ server.listen(3333);
 app.use(express.static(path.join(__dirname, 'public')));
 
 io.on('connection', (socket) => {
-  console.log('Conexão detectada...')
+  console.log('Conexão detectada...');
 });
