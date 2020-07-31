@@ -19,6 +19,19 @@ function renderUserList() {
   userList.forEach(user => {
     ul.innerHTML += '<li>'+user+'</li>';
   })
+};
+
+function addMessage(type, user, msg) {
+  let ul = document.querySelector('.chatList');
+
+  switch (type) {
+    case 'status':
+      ul.innerHTML += '<li class="m-status">'+msg+'</li>';
+    break;
+    case 'message':
+      ul.innerHTML += '<li class="m-user"><span>'+user+'</span> '+msg+'</li>';
+    break;
+  }
 }
 
 loginName.addEventListener('keyup', (e) => {
@@ -37,11 +50,20 @@ socket.on('user-ok', (connectedUsers) => {
   chatPage.style.display = 'flex';
   chatMessage.focus();
 
+  addMessage('status', null, 'Conectado!');
+
   userList = connectedUsers;
   renderUserList();
 });
 
 socket.on('list-update', (data) => {
+  if(data.joined){
+    addMessage('status', null, data.joined+' entrou na sala.');
+  }
+  if(data.left){
+    addMessage('status', null, data.left+' saiu da sala.');
+  }
+
   userList = data.list;
   renderUserList();
 });
