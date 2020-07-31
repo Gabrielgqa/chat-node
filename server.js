@@ -19,8 +19,20 @@ io.on('connection', (socket) => {
   socket.on('join-request', (username) => {
     socket.username = username;
     connectedUsers.push(username);
-    console.log(connectedUsers);
 
     socket.emit('user-ok', connectedUsers);
+    socket.broadcast.emit('list-update', {
+      joined: username,
+      list: connectedUsers
+    });
+  });
+
+  socket.on('disconnect', () => {
+    connectedUsers = connectedUsers.filter(user => user!= socket.username);
+
+    socket.broadcast.emit('list-update', {
+      left: socket.username,
+      list: connectedUsers
+    });
   })
 });

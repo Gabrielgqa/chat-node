@@ -39,4 +39,9 @@ socket.on('user-ok', (connectedUsers) => {
 
   userList = connectedUsers;
   renderUserList();
-})
+});
+
+socket.on('list-update', (data) => {
+  userList = data.list;
+  renderUserList();
+});
