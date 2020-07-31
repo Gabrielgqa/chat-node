@@ -2,6 +2,12 @@ body {
   margin: 0;
 }
 
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .page {
   height: 100vh;
   background-color: #a29bfe;
@@ -22,9 +28,41 @@ body {
 }
 
 #loginPage {
-  display: flex;
+  display: none;
 }
 
 #chatPage {
-  display: none;
+  display: flex;
+}
+
+.chatArea {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  background-color: #a29bfe;
+}
+
+.chatList {
+  flex: 1;
+  background-color: #fff;
+}
+
+.userList {
+  width: 200px;
+  background-color: #a29bfe;
+}
+
+.chatInput {
+  width: 100%;
+  display: flex;
+}
+
+#chatMessage {
+  flex: 1;
+  height: 40px;
+  padding: 0 10px;
+  font-size: 15px;
+  background-color: #dfe6e9;
+  outline: 0;
+  border: 0;
 }
