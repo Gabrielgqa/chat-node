@@ -61,11 +61,11 @@ ul, li {
 
 .chatList li.m-user span {
   font-weight: bold;
-  color: #0000ff;
+  color: #ff0000;
 }
 
 .chatList li.m-user span.me {
-  color: red;
+  color: #0000ff;
 }
 
 .userList {
