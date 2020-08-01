@@ -37,10 +37,22 @@ function addMessage(type, user, msg) {
 loginName.addEventListener('keyup', (e) => {
   if(e.keyCode === 13){
     let name = loginName.value.trim();
-    if(name != ' '){
+    if(name != ''){
       username = name;
       document.title = 'Chat ('+username+')';
       socket.emit('join-request', username);
+    }
+  }
+});
+
+chatMessage.addEventListener('keyup', (e) => {
+  if(e.keyCode === 13){
+    let txt = chatMessage.value.trim();
+    chatMessage.value = '';
+
+    if(txt != ''){
+      addMessage('message', username, txt);
+      socket.emit('send-msg', txt);
     }
   }
 });
@@ -66,4 +78,8 @@ socket.on('list-update', (data) => {
 
   userList = data.list;
   renderUserList();
+});
+
+socket.on('show-msg', (data) => {
+  addMessage('message', data.username, data.message);
 });
